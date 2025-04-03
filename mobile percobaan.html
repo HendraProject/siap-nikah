@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konsultasi Calon Pengantin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #E91E63;
+            --secondary-color: #FFC0CB;
+            --accent-color: #880E4F;
+            --text-color: #333;
+            --background-color: #FFF5F8;
+            --card-color: #FFFFFF;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+        
+        header p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .tab-container {
+            display: flex;
+            justify-content: space-around;
+            background-color: white;
+            margin-top: 10px;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tab-btn {
+            flex: 1;
+            padding: 12px;
+            text-align: center;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+        
+        .tab-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 20px 0;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .intro {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: var(--card-color);
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .intro h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .intro p {
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+        
+        .card {
+            background-color: var(--card-color);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-3px);
+        }
+        
+        .card h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .card h3 i {
+            margin-right: 10px;
+        }
+        
+        .card p {
+            margin-bottom: 5px;
+            font-size: 0.95rem;
+        }
+        
+        .card .badge {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: var(--accent-color);
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+        
+        .card .cta {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 15px;
+        }
+        
+        .card .whatsapp-btn {
+            background-color: #25D366;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .card .whatsapp-btn i {
+            margin-right: 5px;
+        }
+        
+        .card .whatsapp-btn:hover {
+            background-color: #128C7E;
+        }
+        
+        .profile-pic {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+            border: 2px solid var(--primary-color);
+        }
+        
+        .pemateri-card {
+            display: flex;
+            align-items: center;
+        }
+        
+        .pemateri-info {
+            flex: 1;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 30px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .card {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Konsultasi Calon Pengantin</h1>
+            <p>Konsultasi dan Bimbingan Pra-Nikah via WhatsApp</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="tab-container">
+            <button class="tab-btn active" onclick="openTab('beranda')">Beranda</button>
+            <button class="tab-btn" onclick="openTab('jadwal')">Jadwal</button>
+            <button class="tab-btn" onclick="openTab('pemateri')">Pemateri</button>
+        </div>
+        
+        <div id="beranda" class="tab-content active">
+            <div class="intro">
+                <h2>Selamat Datang</h2>
+                <p>Layanan konsultasi calon pengantin ini dirancang untuk membantu Anda mempersiapkan kehidupan rumah tangga yang harmonis. Konsultasi dilakukan via WhatsApp dengan pemateri profesional.</p>
+                <a href="#" class="btn" onclick="openTab('jadwal')">Lihat Jadwal Konsultasi</a>
+            </div>
+            
+            <div class="card">
+                <h3><i class="fas fa-heart"></i> Mengapa Konsultasi Pra-Nikah Penting?</h3>
+                <p>Konsultasi pra-nikah membantu calon pengantin dalam:</p>
+                <p><span class="badge">Komunikasi Efektif</span>
+                <span class="badge">Manajemen Konflik</span>
+                <span class="badge">Perencanaan Keuangan</span></p>
+                <p><span class="badge">Peran & Tanggung Jawab</span>
+                <span class="badge">Persiapan Mental</span></p>
+            </div>
+            
+            <div class="card">
+                <h3><i class="fas fa-info-circle"></i> Cara Konsultasi</h3>
+                <p>1. Pilih jadwal yang tersedia</p>
+                <p>2. Pilih pemateri yang diinginkan</p>
+                <p>3. Klik tombol WhatsApp untuk menghubungi pemateri</p>
+                <p>4. Lakukan konsultasi sesuai jadwal yang dipilih</p>
+            </div>
+        </div>
+        
+        <div id="jadwal" class="tab-content">
+            <div id="jadwal-konsultasi">
+                <!-- Jadwal akan diisi secara dinamis oleh JavaScript -->
+            </div>
+        </div>
+        
+        <div id="pemateri" class="tab-content">
+            <div class="card pemateri-card">
+                <img src="img/MISRUJI.JPG" alt="Ustadz Ahmad Fadli" class="profile-pic">
+                <div class="pemateri-info">
+                    <h3>Misruji, S.Pd</h3>
+                    <p><strong>Bagian:</strong> Bimbingan Pra-Nikah</p>
+                    <p><strong>Pengalaman:</strong> 10+ tahun</p>
+                    <div class="cta">
+                        <button class="whatsapp-btn" onclick="window.open('https://wa.me/6285231273734?text=Assalamualaikum%20pak,%20saya%20ingin%20berkonsultasi%20mengenai%20persiapan%20pernikahan')">
+                            <i class="fab fa-whatsapp"></i> Hubungi
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card pemateri-card">
+                <img src="img/DIAN.JPG" alt="Ibu Siti Aminah" class="profile-pic">
+                <div class="pemateri-info">
+                    <h3>Dian Firmansah, S.Pd</h3>
+                    <p><strong>Bagian:</strong> Konseling Keluarga & Keuangan</p>
+                    <p><strong>Pengalaman:</strong> 10+ tahun</p>
+                    <div class="cta">
+                        <button class="whatsapp-btn" onclick="window.open('https://wa.me/6282330600809?text=Assalamualaikum%20Bu%20pak,%20saya%20ingin%20berkonsultasi%20mengenai%20persiapan%20pernikahan')">
+                            <i class="fab fa-whatsapp"></i> Hubungi
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card pemateri-card">
+                <img src="img/HENDRA.JPG" alt="Dr. Budi Santoso" class="profile-pic">
+                <div class="pemateri-info">
+                    <h3>Hendra Budiyanto</h3>
+                    <p><strong>Bagian:</strong> Verifikasi Data & Mengeluarkan Sertifikat</p>
+                    <p><strong>Pengalaman:</strong> 10+ tahun</p>
+                    <div class="cta">
+                        <button class="whatsapp-btn" onclick="window.open('https://wa.me/6285184824418?text=Assalamualaikum%20Dr.%20Budi,%20saya%20ingin%20berkonsultasi%20mengenai%20persiapan%20pernikahan')">
+                            <i class="fab fa-whatsapp"></i> Hubungi
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="current-year"></span> Konsultasi Calon Pengantin. Semua hak dilindungi.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Fungsi untuk membuka tab
+        function openTab(tabName) {
+            const tabContents = document.getElementsByClassName('tab-content');
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove('active');
+            }
+            
+            const tabButtons = document.getElementsByClassName('tab-btn');
+            for (let i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove('active');
+            }
+            
+            document.getElementById(tabName).classList.add('active');
+            
+            // Temukan dan aktifkan tombol yang sesuai
+            const buttons = document.getElementsByClassName('tab-btn');
+            for (let i = 0; i < buttons.length; i++) {
+                if (buttons[i].textContent.toLowerCase() === tabName) {
+                    buttons[i].classList.add('active');
+                }
+            }
+        }
+        
+        // Fungsi untuk memformat tanggal dalam Bahasa Indonesia
+        function formatDateIndonesian(date) {
+            const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+            const months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+            
+            const day = days[date.getDay()];
+            const dateNum = date.getDate();
+            const month = months[date.getMonth()];
+            const year = date.getFullYear();
+            
+            return `${day}, ${dateNum} ${month} ${year}`;
+        }
+        
+        // Data jadwal konsultasi dengan topik dan pemateri
+        const jadwalData = [
+            {
+                waktu: "09:00 - 11:00 WIB",
+                topik: "Persiapan Mental & Spiritual",
+                pemateri: "Misruji, S.Pd",
+                waNumber: "6285231273734"
+            },
+            {
+                waktu: "13:00 - 15:00 WIB",
+                topik: "Manajemen Keuangan Keluarga",
+                pemateri: "Dian Firmansah, S.Pd",
+                waNumber: "6282330600809"
+            },
+            {
+                waktu: "15:00 - 17:00 WIB",
+                topik: "Komunikasi Efektif Suami Istri",
+                pemateri: "Misruji, S.Pd",
+                waNumber: "6285231273734"
+            },
+            {
+                waktu: "09:00 - 11:00 WIB",
+                topik: "Fiqih Munakahat",
+                pemateri: "Dian Firmansah, S.Pd",
+                waNumber: "6282330600809"
+            },
+            {
+                waktu: "13:00 - 15:00 WIB",
+                topik: "Kesehatan Reproduksi",
+                pemateri: "Misruji, S.Pd",
+                waNumber: "6285231273734"
+            }
+        ];
+        
+        // Fungsi untuk membuat jadwal konsultasi 5 hari ke depan
+        function createSchedule() {
+            const jadwalContainer = document.getElementById('jadwal-konsultasi');
+            jadwalContainer.innerHTML = ''; // Kosongkan container
+            
+            const today = new Date();
+            
+            // Generate jadwal untuk 5 hari ke depan
+            for (let i = 0; i < 5; i++) {
+                const scheduleDate = new Date(today);
+                scheduleDate.setDate(today.getDate() + i);
+                
+                const jadwalInfo = jadwalData[i % jadwalData.length]; // Rotasi jadwal
+                const formattedDate = formatDateIndonesian(scheduleDate);
+                
+                // Format tanggal untuk pesan WhatsApp
+                const day = scheduleDate.getDate();
+                const month = scheduleDate.getMonth() + 1;
+                const year = scheduleDate.getFullYear();
+                const waDateFormat = `${day}/${month}/${year}`;
+                
+                // Buat elemen kartu jadwal
+                const jadwalCard = document.createElement('div');
+                jadwalCard.className = 'card';
+                jadwalCard.innerHTML = `
+                    <h3><i class="fas fa-calendar-alt"></i> ${formattedDate}</h3>
+                    <p><strong>Waktu:</strong> ${jadwalInfo.waktu}</p>
+                    <p><strong>Topik:</strong> ${jadwalInfo.topik}</p>
+                    <p><strong>Pemateri:</strong> ${jadwalInfo.pemateri}</p>
+                    <div class="cta">
+                        <button class="whatsapp-btn" onclick="window.open('https://wa.me/${jadwalInfo.waNumber}?text=Assalamualaikum,%20saya%20ingin%20konsultasi%20calon%20pengantin%20dengan%20topik%20${encodeURIComponent(jadwalInfo.topik)}%20pada%20${encodeURIComponent(formattedDate)}')">
+                            <i class="fab fa-whatsapp"></i> Konsultasi
+                        </button>
+                    </div>
+                `;
+                
+                jadwalContainer.appendChild(jadwalCard);
+            }
+        }
+        
+        // Atur tahun saat ini di footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Jalankan fungsi saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', function() {
+            createSchedule();
+        });
+    </script>
+</body>
+</html>
